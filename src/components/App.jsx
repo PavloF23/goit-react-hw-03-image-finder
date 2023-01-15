@@ -1,42 +1,24 @@
 import { Component } from "react";
-import { Searchbar } from "./Searchbar/Searchbar";
-import { AppStyle } from "./App.styled";
-
+import { ToastContainer } from 'react-toastify';
+import { Searchbar } from './Searchbar/Searchbar';
+import { AppStyle } from './App.styled';
+import { ImageGallery } from './ImageGallery/ImageGallery';
 
 export class App extends Component {
   state = {
-    pictures: null,
-    allLoaded: false,
-    error: null,
-    status: "idele",
-    page: 1,
+    findImg: '', 
   };
 
-
-  handleSubmit = evt => {
-    evt.preventDefault();
-    const query = evt.target.elements.query.value.trim().toLowerCase();
-
-    if (!query) {
-      alert('Search box cannot be empty. Please enter the word.');
-      return;
-    }
-
-    this.setState({
-      page: 1,
-      query,
-      images: [],
-    });
-
-    evt.target.reset();
+  handleFormSubmit = findImg => {
+    this.setState({ findImg });
   };
-
-
 
   render() {
     return (
       <AppStyle>
-        <Searchbar onSubmit={this.handleSubmit} />
+        <Searchbar onSubmit={this.handleFormSubmit} />
+        <ToastContainer position="top-center" autoClose={3000} />
+        <ImageGallery findImg={this.state.findImg} />
       </AppStyle>
     );
   }
