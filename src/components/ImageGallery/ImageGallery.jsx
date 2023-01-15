@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { Component } from "react";
 import { Gallery } from './ImageGallery.styled';
 import { fetchImages } from 'components/servicesApi';
@@ -28,27 +28,21 @@ export class ImageGallery extends Component {
   
 
 render() {
-  const images = this.state;
+  const {images} = this.state;
+  // console.log(images);
   return (
 <Gallery>
     {/* {this.state.loding && <h1>LODING</h1>} */}
-    {this.state.findImg && (images.map((image) => {
-            return (
+    {this.state.findImg && images.map(image => {
+                  return (
               <ImageGalleryItem
                 key={image.id}
                 tags={image.tags}
                 webformatURL={image.webformatURL}
                 largeImageURL={image.largeImageURL}
                 />
-                )}))}             
+                )})}           
 </Gallery>
 )
 }}
 
-ImageGallery.propTypes = {
-  images: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-};
