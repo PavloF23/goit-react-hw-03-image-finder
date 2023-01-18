@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import { Component } from "react";
 import { IoSearchOutline } from 'react-icons/io5';
-import { toast } from 'react-toastify';
 import { Header, SearchForm, Button, Label, Input, } from './Searchbar.styled';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export class Searchbar extends Component {
   state = {
@@ -27,25 +28,25 @@ handleSubmit = evt => {
 render() {
     return (
       <Header>
-      <SearchForm onSubmit={this.handleSubmit}>
-        <Button type="submit">
-        <IoSearchOutline size={24} />
-          <Label>Search</Label>
-        </Button>
-    
-        <Input
-          type="text"
-          autocomplete="off"
-          autofocus
-          placeholder="Search images and photos"
-          value={this.state.findImg}
-          onChange={this.handleNameChange}
-        />
-      </SearchForm>
-    </Header>
+        <ToastContainer position="top-center" autoClose={3000} theme="colored"/>
+        <SearchForm onSubmit={this.handleSubmit}>
+          <Button type="submit">
+            <IoSearchOutline size={24} />
+            <Label>Search</Label>
+          </Button>
+          <Input
+            type="text"
+            autocomplete="off"
+            autoFocus
+            placeholder="Search images and photos"
+            value={this.state.findImg}
+            onChange={this.handleNameChange}
+          />
+        </SearchForm>
+      </Header>
     );
   }}
   
-  Searchbar.propTypes = {
-    onSubmit: PropTypes.func.isRequired,
-  };
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};

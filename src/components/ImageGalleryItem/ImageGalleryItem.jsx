@@ -4,14 +4,14 @@ import { GalleryItem, Img } from './ImageGalleryItem.styled';
 export const ImageGalleryItem = ({
   webformatURL,
   tags,
-  largeImageURL,
-  onOpenModal,
+  // largeImageURL,
+  // onOpenModal,
 }) => {
   return (
     <GalleryItem
-      onClick={() => {
-        onOpenModal(largeImageURL, tags);
-      }}
+      // onClick={() => {
+      //   onOpenModal(largeImageURL, tags);
+      // }}
     >
       <Img src={webformatURL} alt={tags} />
     </GalleryItem>
@@ -21,6 +21,6 @@ export const ImageGalleryItem = ({
 ImageGalleryItem.propTypes = {
   webformatURL: PropTypes.string.isRequired,
   tags: PropTypes.string.isRequired,
-  largeImageURL: PropTypes.string.isRequired,
-  onOpenModal: PropTypes.string.isRequired,
+  // largeImageURL: PropTypes.string.isRequired,
+  // onOpenModal: PropTypes.string.isRequired,
 };

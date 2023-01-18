@@ -7,12 +7,11 @@ export async function fetchImages( query, page ) {
   const response = await fetch(
     `${BASE_URL}?q=${query}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12`
   );
-  if (response.ok) {
-    return response.json();
+  if (!response.ok) {
+   return await Promise.reject(
+    new Error(`No results containing ${query} not found.`));
   }
-  return await Promise.reject(
-    new Error(`No results containing ${query} not found.`)
-  );
+   return response.json();   
 }
 
 fetchImages.propTypes = {
