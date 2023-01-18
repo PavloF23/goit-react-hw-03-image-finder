@@ -11,7 +11,8 @@ export function ImageGallery ({items}) {
           key={item.id}
           item={item}
           webformatURL={item.webformatURL}
-          tags={item.tags}         
+          tags={item.tags}     
+          // onClick={onOpenModal}    
         />
       ))}           
     </Gallery>
@@ -24,5 +25,5 @@ ImageGallery.propTypes = {
       id: PropTypes.number.isRequired,
     })
   ).isRequired,
-  // onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
