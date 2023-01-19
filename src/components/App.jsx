@@ -20,11 +20,10 @@ export class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { page, query } = this.state
-    const prevSearchName = prevState.query
     const BASE_URL = 'https://pixabay.com/api/';
     const API_KEY = '32850209-97f2951747f8bc30e5bbd4a42';
       
-    if (prevSearchName !== query || prevState.page !== page) {
+    if (prevState.query !== query || prevState.page !== page) {
       this.setState({ status: 'pending'})
       fetch(`${BASE_URL}?q=${query}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12`)
         .then(response => response.json())
