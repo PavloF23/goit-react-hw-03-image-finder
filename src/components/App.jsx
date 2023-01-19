@@ -3,7 +3,7 @@ import { Searchbar } from './Searchbar/Searchbar';
 import { AppStyle } from './App.styled';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { fetchImages } from 'components/servicesApi';
-// import { Audio } from "react-loader-spinner";
+import { LoadMore } from "./LoadMore/LoadMore";
 
 export class App extends Component {
   state = {
@@ -14,8 +14,8 @@ export class App extends Component {
     status: "idle",
   }
 
-  handleFormSubmit = findImg => {
-    this.setState({ page:1, query: findImg, images: [] });
+  handleFormSubmit = query => {
+    this.setState({ page:1, query, images: [] });
   };
 
   componentDidUpdate(prevProps, prevState){    
@@ -24,6 +24,7 @@ export class App extends Component {
       prevState.query !== this.state.query
     ) {
       this.setState({ status: 'pending' });
+      console.log(this.state.query);
       fetchImages({ query: this.state.query, page: this.state.page })
         .then(({ totalHits, hits }) => {
           if (totalHits) {
@@ -38,11 +39,17 @@ export class App extends Component {
         })
         .catch(error => this.setState({ error, status: 'rejected' }));       
     }    
-  }
-  
+  }  
+
+  loadMore = () => {
+    this.setState(prevState => ({
+      page: prevState.page + 1,
+      status: 'pending',
+    }));
+  };
 
   render() {
-    const { images, status, query } = this.state;
+    const { images, status, query, total } = this.state;
 
     if (status === "idle") {
       return (
@@ -67,6 +74,7 @@ export class App extends Component {
       <AppStyle>
         <Searchbar onSubmit={this.handleFormSubmit} />
         <ImageGallery items={images} />
+        {images.length < total && <LoadMore onClick={this.loadMore} />}
       </AppStyle>
       );
     }
