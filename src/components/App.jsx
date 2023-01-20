@@ -50,7 +50,6 @@ export class App extends Component {
   loadMore = () => {
     this.setState(prevState => ({
       page: prevState.page + 1,
-      // images: prevState.images,
       status: 'pending',
     }));
   };
