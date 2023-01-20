@@ -50,7 +50,7 @@ export class App extends Component {
   loadMore = () => {
     this.setState(prevState => ({
       page: prevState.page + 1,
-      images: prevState.images,
+      // images: prevState.images,
       status: 'pending',
     }));
   };
@@ -61,9 +61,9 @@ export class App extends Component {
     if (status === "idle") {
       return (
         <AppStyle>
-        <Searchbar onSubmit={this.handleFormSubmit} />
-        <p>Enter the name of the picture</p>
-      </AppStyle>
+          <Searchbar onSubmit={this.handleFormSubmit} />
+          <p>Enter the name of the picture</p>
+        </AppStyle>
       );
     }
 
@@ -78,12 +78,12 @@ export class App extends Component {
     }
 
     if (status === "resolved") {
-    return (
-      <AppStyle>
-        <Searchbar onSubmit={this.handleFormSubmit} />
-        <ImageGallery items={images} />
-        {openButtonLoadMore && <LoadMore onClick={this.loadMore} />}
-      </AppStyle>
+      return (
+        <AppStyle>
+          <Searchbar onSubmit={this.handleFormSubmit} />
+          <ImageGallery items={images} />
+          {openButtonLoadMore && <LoadMore onClick={this.loadMore} />}
+        </AppStyle>
       );
     }
 
@@ -93,7 +93,7 @@ export class App extends Component {
           <Searchbar onSubmit={this.handleFormSubmit} />
           <h1>{`No results containing ${query} were found.`}</h1>
         </AppStyle>
-        );
+      );
     }
   }
 };
